@@ -9,26 +9,26 @@ package model;
  * @author 181910101
  */
 public class Livro {
-    private String idLivros;
+    private String idLivro;
     private String titulo;
     private int anoFab;
     private String isbn;
     private String autor; //agregação da classe model Pessoa com Carro
 
-    public Livro(String idLivros, String titulo, int anoFab, String isbn, String autor) {
-        this.idLivros = idLivros;
+    public Livro(String idLivro, String titulo, int anoFab, String isbn, String autor) {
+        this.idLivro = idLivro;
         this.titulo = titulo;
         this.anoFab = anoFab;
         this.isbn = isbn;
         this.autor = autor;
     }
 
-    public String getIdLivros() {
-        return idLivros;
+    public String getIdLivro() {
+        return idLivro;
     }
 
-    public void setIdLivros(String idLivros) {
-        this.idLivros = idLivros;
+    public void setIdLivro(String idLivros) {
+        this.idLivro = idLivros;
     }
 
     public String getTitulo() {
@@ -65,7 +65,7 @@ public class Livro {
 
     @Override
     public String toString() {
-        return "\n---" + "\nidLivros:\t" + idLivros + "\ntitulo:\t" + titulo + "\nanoFab:\t" + anoFab + "\nisbn:\t" + isbn + "\nautor:\t" + autor;
+        return "\n---" + "\nidLivros:\t" + idLivro + "\ntitulo:\t" + titulo + "\nanoFab:\t" + anoFab + "\nisbn:\t" + isbn + "\nautor:\t" + autor;
     }
    
 }//fim Classe Carro
