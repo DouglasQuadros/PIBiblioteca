@@ -23,6 +23,10 @@ public class Livro {
         this.autor = autor;
     }
 
+    public Livro() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public String getIdLivro() {
         return idLivro;
     }

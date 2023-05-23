@@ -53,70 +53,67 @@ public class LivroDAO {
                 l.setIsbn(rs.getString("isbn"));
                 l.setAutor(rs.getString("autor"));
                 PessoaServicos pessoaS = ServicosFactory.getPessoaServicos();
-                l.setProprietario(pessoaS.getPessoaByDoc(rs.getString("cpf")));
-                carros.add(l);
+                livros.add(l);
             }
         } catch (SQLException e) {
             System.out.println("Erro ao listar Carro.\n"
                     + e.getMessage());
         }
 
-        return carros;
+        return livros;
     }//fim getCarros
 
-    public Carro getCarroByDoc(String placa) {
-        Carro c = new Carro();
+    public Livro getLivroByDoc(String isbn) {
+        Livro l = new Livro();
         try {
             Connection con = Conexao.getConexao();
-            String sql = "select c.*, p.cpf as cpf from carros c "
-                    + "join pessoas p on c.proprietario = p.idPessoa "
-                    + "where placa = ?";
+            String sql = "select l.*, p.cpf as cpf from carros l "
+                    + "join pessoas p on l.Autor = p.idPessoa "
+                    + "where isbn = ?";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, placa);
+            pst.setString(1, isbn);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                c.setPlaca(rs.getString("placa"));
-                c.setMarca(rs.getString("marca"));
-                c.setModelo(rs.getString("modelo"));
-                c.setAnoFab(rs.getInt("anoFab"));
-                c.setAnoMod(rs.getInt("anoMod"));
-                c.setCor(rs.getString("cor"));
-                c.setTpCambio(rs.getString("tpCambio"));
-                c.setCombustivel(rs.getString("combustivel"));
+                l.setIdLivro(rs.getString("id"));
+                l.setTitulo(rs.getString("titulo"));
+                l.setAnoFab(rs.getInt("anoFab"));
+                l.setIsbn(rs.getString("isbn"));
+                l.setAutor(rs.getString("autor"));
                 PessoaServicos pessoaS = ServicosFactory.getPessoaServicos();
-                c.setProprietario(pessoaS.getPessoaByDoc(rs.getString("cpf")));
+                l.setAutor(pessoaS.getPessoaByDoc(rs.getString("cpf")));
             }
         } catch (SQLException e) {
             System.out.println("Erro ao buscar placa.\n" + e.getMessage());
         }
-        return c;
+        return l;
     }//fim getCarroByDoc
 
-    public void atualizarCarro(Carro cVO) {
+    public void atualizarLivro(Livro lVO) {
         try {
             Connection con = Conexao.getConexao();
             String sql = "update carros set cor = ?, tpCambio = ?, combustivel = ?, "
                     + "proprietario = ? where placa = ?";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, cVO.getCor());
-            pst.setString(2, cVO.getTpCambio());
-            pst.setString(3, cVO.getCombustivel());
+            pst.setString(1, lVO.getTitulo());
+            pst.setInt(2, lVO.getAnoFab());
+            pst.setString(3, lVO.getIsbn());
+            pst.setString(4, lVO.getAutor());
             PessoaServicos pessoaS = ServicosFactory.getPessoaServicos();
-            pst.setInt(4, 
-                    pessoaS.getPessoaByDoc(cVO.getProprietario().getCpf()).getIdPessoa());
-            pst.setString(5, cVO.getPlaca());
+            pst.setInt(5, 
+                    pessoaS.getPessoaByDoc(lVO.getAutor()).getIdPessoa());
+            pst.setString(6, lVO.getIsbn());
             pst.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Erro ao atualizar placa.\n" + e.getMessage());
         }
     }//fim atualizarCarro
     
-    public void deletarCarro(String placa){
+    public void deletarLivro(String isbn){
         try {
             Connection con = Conexao.getConexao();
             String sql = "delete from carros where placa = ?";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, placa);
+            pst.setString(1, isbn);
             pst.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Erro ao deletar carro.\n" + e.getMessage());
