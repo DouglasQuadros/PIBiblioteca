@@ -80,7 +80,7 @@ public class LivroDAO {
                 l.setIsbn(rs.getString("isbn"));
                 l.setAutor(rs.getString("autor"));
                 PessoaServicos pessoaS = ServicosFactory.getPessoaServicos();
-                l.setAutor(pessoaS.getPessoaByDoc(rs.getString("cpf")));
+                //l.setAutor(pessoaS.getPessoaByDoc(rs.getString("cpf")));
             }
         } catch (SQLException e) {
             System.out.println("Erro ao buscar placa.\n" + e.getMessage());

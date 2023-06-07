@@ -15,29 +15,29 @@ import model.Livro;
  */
 public class LivroServicos {
 
-    public void cadastroLivro(Carro cVO) {
-        CarroDAO cDAO = DAOFactory.getCarroDAO();
-        cDAO.cadastrarCarroDAO(cVO);
+    public void cadastroLivro(Livro lVO) {
+        LivroDAO lDAO = DAOFactory.getLivroDAO();
+        lDAO.cadastrarLivroDAO(lVO);
     }
 
-    public ArrayList<Carro> getCarros() {
-        CarroDAO cDAO = DAOFactory.getCarroDAO();
-        return cDAO.getCarros();
+    public ArrayList<Livro> getLivros() {
+        LivroDAO lDAO = DAOFactory.getLivroDAO();
+        return lDAO.getLivros();
     }
 
-    public Carro getCarroByDoc(String placa) {
-        CarroDAO cDAO = DAOFactory.getCarroDAO();
-        return cDAO.getCarroByDoc(placa);
+    public Livro getLivroByDoc(String isbn) {
+        LivroDAO lDAO = DAOFactory.getLivroDAO();
+        return lDAO.getLivroByDoc(isbn);
     }
 
-    public void atualizarCarro(Carro cVO) {
-        CarroDAO cDAO = DAOFactory.getCarroDAO();
-        cDAO.atualizarCarro(cVO);
+    public void atualizarLivro(Livro lVO) {
+        LivroDAO lDAO = DAOFactory.getLivroDAO();
+        lDAO.atualizarLivro(lVO);
     }
 
-    public void deletarCarro(String placa) {
-        CarroDAO cDAO = DAOFactory.getCarroDAO();
-        cDAO.deletarCarro(placa);
+    public void deletarLivro(String isbn) {
+        LivroDAO lDAO = DAOFactory.getLivroDAO();
+        lDAO.deletarLivro(isbn);
     }
 
 }
